@@ -11,12 +11,19 @@
             justify-content: center;
             padding: 20px;
             background-color: #f7f7f7;
+            background-image: url('C:/Users/Gerardo Curia/Downloads/107118.jpg'); /* Añade tu imagen de fondo aquí */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
         }
         .container {
             display: flex;
             max-width: 1200px;
             width: 100%;
             flex-wrap: wrap;
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente para que el texto sea legible */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .left-column, .right-column {
             padding: 20px;
@@ -33,7 +40,11 @@
             text-align: center;
         }
         .product-container {
-            display: none;
+            display: none; /* Oculta los productos por defecto */
+            flex-direction: column;
+            align-items: center; /* Centra el contenido horizontalmente */
+            text-align: center; /* Centra el texto */
+            padding: 10px;
         }
         .product-container img {
             width: 300px; /* Establece un tamaño fijo para todas las imágenes */
@@ -50,27 +61,90 @@
         .product-container p {
             color: #666;
             font-size: 16px;
+            margin: 10px 0;
         }
         .product-container form {
             margin-top: 10px;
         }
         button {
             margin-top: 10px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: #ff9900;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
         }
         button:hover {
             background-color: #e68a00;
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.95);
         }
         video {
             width: 100%; /* Asegura que el video ocupe todo el ancho de la columna */
             height: auto;
             border-radius: 10px;
+        }
+        .brand-selection {
+            margin-top: 20px;
+        }
+        .brand-selection label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .brand-selection select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            font-size: 16px;
+            color: #333;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .brand-selection select:focus {
+            border-color: #ff9900;
+            box-shadow: 0 0 5px rgba(255, 153, 0, 0.5);
+            outline: none;
+        }
+        .news-section {
+            display: none; /* Oculta la sección de noticias por defecto */
+            margin-top: 20px;
+        }
+        .news-section h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .news-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .news-item img {
+            width: 100px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        .news-item a {
+            text-decoration: none;
+            color: #ff9900;
+            font-weight: bold;
+        }
+        .news-item a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -101,7 +175,7 @@
                     <input type="hidden" name="item_name" value="Auriculares Marca 1 - Modelo 1">
                     <input type="hidden" name="amount" value="60.00">
                     <input type="hidden" name="currency_code" value="USD">
-                    <input type="submit" value="Comprar ahora con PayPal">
+                    <button type="submit">Comprar ahora con PayPal</button>
                 </form>
 
                 <h2>Auriculares Marca 1 - Modelo 2</h2>
@@ -113,7 +187,7 @@
                     <input type="hidden" name="item_name" value="Auriculares Marca 1 - Modelo 2">
                     <input type="hidden" name="amount" value="70.00">
                     <input type="hidden" name="currency_code" value="USD">
-                    <input type="submit" value="Comprar ahora con PayPal">
+                    <button type="submit">Comprar ahora con PayPal</button>
                 </form>
             </div>
 
@@ -128,7 +202,7 @@
                     <input type="hidden" name="item_name" value="Auriculares Marca 2 - Modelo 1">
                     <input type="hidden" name="amount" value="65.00">
                     <input type="hidden" name="currency_code" value="USD">
-                    <input type="submit" value="Comprar ahora con PayPal">
+                    <button type="submit">Comprar ahora con PayPal</button>
                 </form>
 
                 <h2>Auriculares Marca 2 - Modelo 2</h2>
@@ -140,18 +214,35 @@
                     <input type="hidden" name="item_name" value="Auriculares Marca 2 - Modelo 2">
                     <input type="hidden" name="amount" value="75.00">
                     <input type="hidden" name="currency_code" value="USD">
-                    <input type="submit" value="Comprar ahora con PayPal">
+                    <button type="submit">Comprar ahora con PayPal</button>
                 </form>
             </div>
         </div>
 
-        <!-- Columna derecha: Video de publicidad -->
+        <!-- Columna derecha: Video de publicidad y noticias -->
         <div class="right-column">
             <h2>Publicidad Auriculares Xiaomi</h2>
             <video controls>
                 <source src="C:/Users/Gerardo Curia/Downloads/Redmi Airdots 2 Official Video.mp4" type="video/mp4">
                 Tu navegador no soporta la reproducción de videos.
             </video>
+
+            <!-- Sección de Noticias -->
+            <div class="news-section" id="news-section">
+                <h2>Últimas Noticias</h2>
+                <div class="news-item">
+                    <img src="https://cdn.motor1.com/images/mgl/Oo2oEL/s1/franco-colapinto-en-monza..jpg" alt="Noticia 1">
+                    <a href="https://www.tn.com.ar/noticia1" target="_blank">Título de la Noticia 1</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://media.telemundo47.com/2020/11/5433486886-1080pnbcstations.jpg?quality=85&strip=all&resize=1200%2C675" alt="Noticia 2">
+                    <a href="https://www.tn.com.ar/noticia2" target="_blank">Título de la Noticia 2</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://s3.amazonaws.com/prod-wp-tunota/wp-content/uploads/2024/08/prinicipal_franco-colapinto-novia-el-nuevo-piloto-de-la-f1-tiene-pareja-esta-soltero-2024-08-27_seo_cs.jpg" alt="Noticia 3">
+                    <a href="https://www.tn.com.ar/noticia3" target="_blank">Título de la Noticia 3</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -160,15 +251,19 @@
             // Ocultar todos los productos
             document.getElementById('productos-marca1').style.display = 'none';
             document.getElementById('productos-marca2').style.display = 'none';
+            document.getElementById('news-section').style.display = 'none'; // Oculta la sección de noticias por defecto
             
-            // Mostrar los productos según la marca seleccionada
+            // Mostrar los productos y la sección de noticias según la marca seleccionada
             var marcaSeleccionada = document.getElementById('marca').value;
             if (marcaSeleccionada === 'marca1') {
                 document.getElementById('productos-marca1').style.display = 'block';
+                document.getElementById('news-section').style.display = 'block'; // Muestra la sección de noticias
             } else if (marcaSeleccionada === 'marca2') {
                 document.getElementById('productos-marca2').style.display = 'block';
+                document.getElementById('news-section').style.display = 'block'; // Muestra la sección de noticias
             }
         }
     </script>
 </body>
 </html>
+
